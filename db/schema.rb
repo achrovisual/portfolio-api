@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_043216) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_29_045554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_043216) do
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   create_table "images", force: :cascade do |t|
@@ -34,6 +35,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_043216) do
     t.boolean "hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_projects_on_author_id"
   end
 
+  add_foreign_key "projects", "authors"
 end
