@@ -4,13 +4,14 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
+    @images = Image.all
 
-    render json: @projects
+    render json: {:project => @projects, :project_images => @images}
   end
 
   # GET /projects/1
   def show
-    render json: @project
+    render json: {:project => @project, :project_images => @project.images}
   end
 
   # POST /projects
